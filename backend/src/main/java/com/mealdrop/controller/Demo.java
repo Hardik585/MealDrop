@@ -8,6 +8,6 @@ public class Demo {
 
     @GetMapping("/message")
     public String msg(){
-        return "Wlm Food Backend";
+        return "Wlm Food Backend. Checking for the Dev branch";
     }
 }
