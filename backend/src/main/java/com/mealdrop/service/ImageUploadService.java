@@ -16,7 +16,8 @@ public class ImageUploadService {
 
     private final Cloudinary cloudinary;
     private ImageUploadResult imageUploadResult;
-    public ImageUploadService(Cloudinary cloudinary , ImageUploadResult imageUploadResult) {
+
+    public ImageUploadService(Cloudinary cloudinary, ImageUploadResult imageUploadResult) {
         this.cloudinary = cloudinary;
         this.imageUploadResult = imageUploadResult;
     }
@@ -26,9 +27,21 @@ public class ImageUploadService {
                 file.getBytes(),
                 ObjectUtils.emptyMap()
         );
-           imageUploadResult.setFileId(uploadResult.get("public_id").toString());
-           imageUploadResult.setFileUrl(uploadResult.get("secure_url").toString());
-           return imageUploadResult;
+        imageUploadResult.setFileId(uploadResult.get("public_id").toString());
+        imageUploadResult.setFileUrl(uploadResult.get("secure_url").toString());
+        return imageUploadResult;
+    }
+
+    public boolean imageDelete(String publicId) {
+        try {
+            Map result=cloudinary.uploader().destroy(
+                                          publicId,
+                                          ObjectUtils.emptyMap());
+            String status =result.get("result").toString();
+            return "ok".equals(status);
+        } catch (Exception e) {
+            throw new RuntimeException("fail to delete image", e);
+        }
     }
 
 }
