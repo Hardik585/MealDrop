@@ -38,6 +38,19 @@ frontend/.env.development
 frontend/.env.production
 
 # ========================================
+# admin panel (React, Angular, Vue, etc.)
+# ========================================
+adminpanel/node_modules/
+adminpanel/dist/
+adminpanel/package-lock.json
+adminpanel/yarn.lock
+adminpanel/.env
+adminpanel/.env.local
+adminpanel/.env.development
+adminpanel/.env.production
+adminpanel/src/components/test/
+
+# ========================================
 # BACKEND (Spring Boot project inside backend/my-sts-project)
 # ========================================
 
