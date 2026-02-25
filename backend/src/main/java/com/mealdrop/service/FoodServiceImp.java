@@ -29,7 +29,6 @@ public class FoodServiceImp implements FoodService {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-
         FoodEntity newEntity = FoodMapper.toEntity(foodRequest);
         newEntity.setImgUrl(imageResult.getFileUrl());
         newEntity.setImgUrlId(imageResult.getFileId());
