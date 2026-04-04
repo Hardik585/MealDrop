@@ -2,8 +2,8 @@ package com.mealdrop.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mealdrop.dto.FoodRequest;
-import com.mealdrop.dto.FoodResponse;
+import com.mealdrop.dto.FoodRequestDTO;
+import com.mealdrop.dto.FoodResponseDTO;
 import com.mealdrop.service.FoodService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Controller
+@RequestMapping("/api")
 @AllArgsConstructor
+@CrossOrigin("*")
 public class FoodController {
 
     private FoodService foodService;
@@ -26,20 +28,20 @@ public class FoodController {
     @PostMapping(value = "/foods", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> createFood(@RequestPart("image") MultipartFile file,
                                                    @RequestPart("food") String foodJson) throws JsonProcessingException {
-               FoodRequest foodRequest  = new ObjectMapper().readValue(foodJson, FoodRequest.class);
-       FoodResponse response =foodService.addFood(foodRequest,file);
+               FoodRequestDTO foodRequestDTO = new ObjectMapper().readValue(foodJson, FoodRequestDTO.class);
+       FoodResponseDTO response =foodService.addFood(foodRequestDTO,file);
        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/foods")
-    public ResponseEntity<List<FoodResponse>> getFoods(){
-        List<FoodResponse> list =  foodService.getFoods();
+    public ResponseEntity<List<FoodResponseDTO>> getFoods(){
+        List<FoodResponseDTO> list =  foodService.getFoods();
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 
     @GetMapping("/food/{id}")
     public ResponseEntity<?> getFood(@PathVariable String id){
-         FoodResponse food=foodService.getFood(id);
+         FoodResponseDTO food=foodService.getFood(id);
          return ResponseEntity.status(HttpStatus.OK).body(food);
     }
 

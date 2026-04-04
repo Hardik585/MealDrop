@@ -1,18 +1,18 @@
 package com.mealdrop.service;
 
-import com.mealdrop.dto.FoodRequest;
-import com.mealdrop.dto.FoodResponse;
+import com.mealdrop.dto.FoodRequestDTO;
+import com.mealdrop.dto.FoodResponseDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 
 public interface FoodService {
-   FoodResponse addFood(FoodRequest foodRequest , MultipartFile file);
+   FoodResponseDTO addFood(FoodRequestDTO foodRequestDTO, MultipartFile file);
 
-   List<FoodResponse> getFoods();
+   List<FoodResponseDTO> getFoods();
 
-   FoodResponse getFood(String id);
+   FoodResponseDTO getFood(String id);
 
    void deleteFood(String id);
 
