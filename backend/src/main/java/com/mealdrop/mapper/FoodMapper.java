@@ -1,12 +1,12 @@
 package com.mealdrop.mapper;
 
-import com.mealdrop.dto.FoodRequest;
-import com.mealdrop.dto.FoodResponse;
+import com.mealdrop.dto.FoodRequestDTO;
+import com.mealdrop.dto.FoodResponseDTO;
 import com.mealdrop.entity.FoodEntity;
 
 public class FoodMapper {
 
-    public static FoodEntity toEntity(FoodRequest request){
+    public static FoodEntity toEntity(FoodRequestDTO request){
           FoodEntity entity=new FoodEntity();
           entity.setName(request.getName());
           entity.setPrice(request.getPrice());
@@ -15,8 +15,8 @@ public class FoodMapper {
           return entity;
     }
 
-    public static FoodResponse toResponse(FoodEntity entity){
-        FoodResponse response =new FoodResponse();
+    public static FoodResponseDTO toResponse(FoodEntity entity){
+        FoodResponseDTO response =new FoodResponseDTO();
         response.setId(entity.getId());
         response.setName(entity.getName());
         response.setDescription(entity.getDescription());
