@@ -1,172 +1,267 @@
-## 🚀 MealDrop
+# 🚀 MealDrop
 
-**Smart Food Delivery & Order Management System**
+<p align="center">
+  <h3 align="center">A Modern Full-Stack Food Delivery & Order Management Platform</h3>
+  <p align="center">
+    Built with Spring Boot, React, MongoDB, JWT Authentication, Razorpay & Cloudinary.
+  </p>
+</p>
 
----
+<p align="center">
 
-## 📌 Overview
+![GitHub stars](https://img.shields.io/github/stars/Hardik585/MealDrop?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/Hardik585/MealDrop?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/Hardik585/MealDrop?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/Hardik585/MealDrop?style=for-the-badge)
 
-The Smart Food Delivery System is a scalable web-based platform designed to manage online food ordering, real-time order tracking, and efficient delivery handling.
-
-Unlike basic food ordering apps, this system focuses on **backend architecture, order lifecycle management, and delivery optimization**, making it suitable for real-world applications.
-
----
-
-## 🎯 Objectives
-
-* Simplify food ordering for users
-* Enable restaurant management
-* Optimize order processing and delivery flow
-* Provide real-time order tracking
-* Ensure secure and scalable backend architecture
+</p>
 
 ---
 
-## 🎯 Features
+## 📑 Table of Contents
 
-### 👤 Customer
-
-* Register and login securely
-* Browse restaurants and menus
-* Add items to cart
-* Place orders
-* Track order status (Placed → Preparing → Out for Delivery → Delivered)
-
----
-
-### 🏪 Restaurant Admin
-
-* Manage menu items
-* Update item availability
-* Accept/reject orders
-* Update order status
-
----
-
-### 🚚 Delivery Agent *(Optional Advanced Feature)*
-
-* View assigned orders
-* Update delivery status
-* Optimize delivery routes
+- [Overview](#-overview)
+- [Features](#-features)
+- [Order Lifecycle](#-order-lifecycle)
+- [System Architecture](#-system-architecture)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Screenshots](#-screenshots)
+- [Security](#-security)
+- [Payment Integration](#-payment-integration)
+- [Cloud Storage](#-cloud-storage)
+- [Getting Started](#-getting-started)
+- [API Endpoints](#-api-endpoints)
+- [Learning Outcomes](#-learning-outcomes)
+- [Future Improvements](#-future-improvements)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Author](#-author)
 
 ---
 
-## 🧠 Core System Design
+# 📖 Overview
 
-The system is built around **order lifecycle management**:
+MealDrop is a **full-stack food delivery platform** that enables customers to browse food items, place online orders, make secure payments, and track deliveries in real time.
+
+The project also includes a dedicated **Admin Dashboard** for restaurant management, allowing administrators to manage food items, process customer orders, and monitor the overall ordering workflow.
+
+The application demonstrates modern backend development practices including authentication, REST APIs, cloud image storage, secure payments, and scalable application architecture.
+
+---
+
+# ✨ Features
+
+## 👤 Customer
+
+- Register & Login securely
+- JWT Authentication
+- Browse available food items
+- Search & Filter menu
+- Add/Remove items from cart
+- Place online orders
+- Secure Razorpay payment
+- View order history
+- Track live order status
+
+---
+
+## 🏪 Admin
+
+- Secure Admin Login
+- Add new food items
+- Update menu
+- Delete food items
+- Upload images via Cloudinary
+- Manage customer orders
+- Update order status
+
+---
+
+## 🚚 Order Management
+
+- Order Creation
+- Payment Verification
+- Order Acceptance
+- Food Preparation
+- Delivery Tracking
+- Order Completion
+
+---
+
+# 📦 Order Lifecycle
 
 ```text
-Order Created → Accepted → Preparing → Out for Delivery → Delivered
+Order Placed
+      │
+      ▼
+Payment Successful
+      │
+      ▼
+Accepted
+      │
+      ▼
+Preparing
+      │
+      ▼
+Out For Delivery
+      │
+      ▼
+Delivered
 ```
-
-Each stage is tracked and updated in real-time.
 
 ---
 
-## 🏗️ System Architecture
+# 🏗️ System Architecture
 
 ```text
-Client (React / Web)
-        ↓
-Controller Layer (REST APIs)
-        ↓
-Service Layer (Business Logic)
-        ↓
-Repository Layer (JPA)
-        ↓
-Database (MySQL)
+                    React Frontend
+                           │
+                    REST API Requests
+                           │
+                  Spring Boot Backend
+                           │
+          ┌────────────────┴────────────────┐
+          │                                 │
+      MongoDB Database               Cloudinary Storage
+          │
+     Razorpay Payment Gateway
 ```
 
 ---
 
-## 🧩 Database Design
+# 🛠️ Tech Stack
 
-### Main Entities:
+### Frontend
 
-* **User**
-* **Restaurant**
-* **MenuItem**
-* **Order**
-* **OrderItem**
-* **Delivery**
+- React.js
+- Vite
+- JavaScript
+- CSS3
+- Axios
 
----
+### Backend
 
-### Key Relationships:
+- Java
+- Spring Boot
+- Spring Security
+- Spring Data MongoDB
+- JWT Authentication
+- Maven
 
-* User → Orders (One-to-Many)
-* Restaurant → MenuItems (One-to-Many)
-* Order → OrderItems (One-to-Many)
-* Order → User (Many-to-One)
-* Order → Restaurant (Many-to-One)
+### Database
 
----
+- MongoDB
 
-## 🔄 Order Flow (Important)
+### Third-Party Services
 
-1. User places order
-2. Order stored in database
-3. Restaurant processes order
-4. Status updated step-by-step
-5. Delivery assigned
-6. User receives order
+- Razorpay
+- Cloudinary
 
----
+### Tools
 
-## 🛠️ Tech Stack
-
-### Backend:
-
-* Java
-* Spring Boot
-* Spring Security
-* Spring Data JPA
-
-### Frontend:
-
-* React.js
-* HTML, CSS, JavaScript
-* Tailwind / Bootstrap
-
-### Database:
-
-* MySQL
-
-### Tools:
-
-* Git & GitHub
-* Postman
-* Maven
-* Docker (optional)
+- Git
+- GitHub
+- Docker
+- Postman
 
 ---
 
-## 🔐 Security
+# 📂 Project Structure
 
-* User authentication using Spring Security
-* Role-based access (Customer / Admin / Delivery Agent)
-* Password encryption (BCrypt)
-* Secure REST APIs
+```text
+MealDrop
+│
+├── frontend/          # Customer Application
+│
+├── adminpanel/        # Admin Dashboard
+│
+└── backend/           # Spring Boot REST API
+```
 
 ---
 
-## ⚙️ Installation & Setup
+# 📸 Screenshots
 
-### 1. Clone repository
+### Admin Dashboard
+
+<p align="center">
+<img src="adminpanel/src/assets/parcel.png" width="700">
+</p>
+
+> **More screenshots coming soon:** Home Page • Menu • Cart • Checkout • Orders • Login
+
+---
+
+# 🔐 Security
+
+- JWT Authentication
+- Spring Security
+- Password Encryption (BCrypt)
+- Secure REST APIs
+- Role-Based Authorization
+
+---
+
+# 💳 Payment Integration
+
+MealDrop integrates **Razorpay** to provide a secure online payment experience.
+
+### Features
+
+- Secure Checkout
+- Payment Verification
+- Order Confirmation
+- Transaction Management
+
+---
+
+# ☁️ Cloud Storage
+
+Food images are managed using **Cloudinary**.
+
+### Benefits
+
+- Cloud Image Hosting
+- Fast Image Delivery
+- Automatic Optimization
+- Easy Image Management
+
+---
+
+# 🚀 Getting Started
+
+## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/your-username/food-delivery-system.git
+git clone https://github.com/Hardik585/MealDrop.git
 ```
 
-### 2. Configure database
+---
+
+## 2️⃣ Backend Setup
+
+```bash
+cd backend
+mvn clean install
+```
+
+Configure `application.properties`
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/food_delivery
-spring.datasource.username=root
-spring.datasource.password=your_password
+spring.data.mongodb.uri=YOUR_MONGODB_URI
+
+jwt.secret=YOUR_SECRET
+
+razorpay.key=YOUR_KEY
+razorpay.secret=YOUR_SECRET
+
+cloudinary.cloud_name=YOUR_NAME
+cloudinary.api_key=YOUR_KEY
+cloudinary.api_secret=YOUR_SECRET
 ```
 
-### 3. Run application
+Run Backend
 
 ```bash
 mvn spring-boot:run
@@ -174,48 +269,131 @@ mvn spring-boot:run
 
 ---
 
-## ▶️ Usage
+## 3️⃣ Frontend Setup
 
-* Open:
+```bash
+cd frontend
 
-  ```
-  http://localhost:8080/
-  ```
+npm install
 
-* Register as user
-
-* Browse menu
-
-* Place order
-
-* Track delivery status
+npm run dev
+```
 
 ---
 
-## 📈 Key Learning Outcomes
+## 4️⃣ Admin Panel Setup
 
-* REST API design
-* Database relationship management
-* Authentication & authorization
-* Order lifecycle handling
-* Scalable backend architecture
+```bash
+cd adminpanel
 
----
+npm install
 
-## 🤝 Contribution
-
-Contributions are welcome. Fork the repo and improve the system.
+npm run dev
+```
 
 ---
 
-## 📄 License
+# 📡 API Endpoints
 
-This project is for educational purposes.
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/auth/register` | Register User |
+| POST | `/auth/login` | User Login |
+| GET | `/foods` | Get All Food Items |
+| GET | `/foods/{id}` | Get Food Details |
+| POST | `/cart` | Add Item to Cart |
+| POST | `/orders` | Place Order |
+| GET | `/orders/user` | User Orders |
+| PUT | `/orders/{id}` | Update Order Status |
+
+> **Note:** API endpoints may vary depending on future updates.
 
 ---
 
-## 👨‍💻 Author
+# 🎯 Learning Outcomes
 
-**Hardik Kaushik**
-Backend Developer (Java | Spring Boot )
+This project demonstrates practical knowledge of:
 
+- Full Stack Web Development
+- REST API Design
+- JWT Authentication
+- Spring Security
+- MongoDB Integration
+- Payment Gateway Integration
+- Cloudinary Image Storage
+- React State Management
+- MVC Architecture
+- Docker Deployment
+
+---
+
+# 🚀 Future Improvements
+
+- Email Notifications
+- Live Order Tracking
+- Delivery Partner Module
+- Push Notifications
+- Restaurant Ratings
+- Customer Reviews
+- Coupons & Discounts
+- Admin Analytics Dashboard
+- Multi-Restaurant Support
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+
+2. Create your feature branch
+
+```bash
+git checkout -b feature/awesome-feature
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Add awesome feature"
+```
+
+4. Push to the branch
+
+```bash
+git push origin feature/awesome-feature
+```
+
+5. Open a Pull Request
+
+---
+
+# 📄 License
+
+This project is intended for educational and learning purposes.
+
+---
+
+# 👨‍💻 Author
+
+## Hardik Kaushik
+
+**Java Backend Developer**
+
+- Spring Boot
+- React
+- MongoDB
+- REST APIs
+
+GitHub: https://github.com/Hardik585
+
+---
+
+<div align="center">
+
+### ⭐ If you found this project useful, consider giving it a Star!
+
+Made with ❤️ by **Hardik Kaushik**
+
+</div>
